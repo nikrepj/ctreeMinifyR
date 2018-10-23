@@ -21,4 +21,15 @@ validateBinaryTreeMap <- function(){
   ozonePredictionMapped <- getBinaryTreeResponse(treeMap, airQuality)
 
   identical(as.numeric(ozonePrediction), ozonePredictionMapped)
+
+  # now auto-generate code containing function definitiion for the conditional logic and implement...
+  logic <- paste("evalAutoCTree <- function(Temp, Wind){\n", writeTreeMapCondition(treeMap), "}")
+  outScript <- paste0(tempfile(), ".R")
+  write(logic, file = outScript)
+
+  source(outScript)
+  autoPredict <- apply(airQuality, 1, function(x) {evalAutoCTree(x["Temp"], x["Wind"])})
+
+  # precision...
+  identical(round(as.numeric(ozonePrediction), 13), round(as.numeric(autoPredict), 13))
 }
