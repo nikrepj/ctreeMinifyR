@@ -1,5 +1,5 @@
 
-#' create a confitional inference tree, minify it and cross-check the responses.
+#' create a conditional inference tree, minify it and cross-check the responses.
 #' analysis taken from https://datawookie.netlify.com/blog/2013/05/package-party-conditional-inference-trees/
 #' @importFrom utils data
 #' @importFrom stats predict
